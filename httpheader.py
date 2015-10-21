@@ -496,10 +496,10 @@ def _test_comments():
     def _testrm( a, b, collapse ):
         b2 = remove_comments( a, collapse )
         if b != b2:
-            print 'Comment test failed:'
-            print '   remove_comments( %s, collapse_spaces=%s ) -> %s' \
-                  % (repr(a), repr(collapse), repr(b2))
-            print '   expected %s' % repr(b)
+            print('Comment test failed:')
+            print('   remove_comments( %s, collapse_spaces=%s ) -> %s' \
+                  % (repr(a), repr(collapse), repr(b2)))
+            print('   expected %s' % repr(b))
             return 1
         return 0
     failures = 0
@@ -1489,8 +1489,8 @@ def acceptable_content_type( accept_header, content_types, ignore_wildcard=True 
     server_ctlist = [content_type(ct) for ct in content_types]
     del ct
 
-    #print 'AC', repr(accept_list)
-    #print 'SV', repr(server_ctlist)
+    #print('AC', repr(accept_list))
+    #print('SV', repr(server_ctlist))
 
     best = None   # (content_type, qvalue, accept_parms, matchlen)
 
@@ -1523,18 +1523,18 @@ def acceptable_content_type( accept_header, content_types, ignore_wildcard=True 
                 else:
                     matchlen = 0
 
-            #print 'S',server_ct,'  C',client_ct,'  M',matchlen,'Q',qvalue
+            #print('S',server_ct,'  C',client_ct,'  M',matchlen,'Q',qvalue)
             if matchlen > 0:
                 if not best_for_this \
                        or matchlen > best_for_this[-1] \
                        or (matchlen == best_for_this[-1] and qvalue > best_for_this[2]):
                     # This match is better
                     best_for_this = (server_ct, client_ct, qvalue, aargs, matchlen)
-                    #print 'BEST2 NOW', repr(best_for_this)
+                    #print('BEST2 NOW', repr(best_for_this))
         if not best or \
                (best_for_this and best_for_this[2] > best[2]):
             best = best_for_this
-            #print 'BEST NOW', repr(best)
+            #print('BEST NOW', repr(best))
     if not best or best[1] <= 0:
         return None
     return best[:-1]
